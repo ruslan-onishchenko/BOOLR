@@ -1767,6 +1767,20 @@ class Component {
             ctx.lineWidth = zoom / 8;
             ctx.stroke();
 
+            if (this.output[i].inverse) {
+                ctx.beginPath();
+                ctx.arc(
+                    screen.x - Math.sin(angle) / 2 * zoom,
+                    screen.y + Math.cos(angle) / 2 * zoom,
+                    zoom / 7,
+                    0,
+                    Math.PI * 2
+                );
+                ctx.fillStyle = "#fff";
+                ctx.stroke();
+                ctx.fill();               
+            }
+
             if(zoom > 10) {
                 ctx.beginPath();
                 ctx.arc(
@@ -1966,7 +1980,7 @@ class NOT extends Component {
     constructor(name,pos) {
         super(name,pos,1,1,{ type: "char", text: "!" });
         this.addInputPort({ side: 3, pos: 0 });
-        this.addOutputPort({ side: 1, pos: 0 });
+        this.addOutputPort({ side: 1, pos: 0 }, '', { inverse: true });
         this.function = function() {
             this.output[0].value = 1 - this.input[0].value;
         }
