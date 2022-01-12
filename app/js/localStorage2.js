@@ -94,7 +94,7 @@ function getLocalStorage() {
 }
 
 const constructors = {
-    Input,Output,NOT,AND,OR,XOR,
+    Input,Output,NOT,AND,OR,XOR,NAND,NOR,XNOR,
     Button,Constant,Delay,Clock,Debug,
     Beep,Counter,LED,Display,
     Custom, TimerStart, TimerEnd,

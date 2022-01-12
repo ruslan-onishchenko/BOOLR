@@ -1999,6 +1999,18 @@ class AND extends Component {
     }
 }
 
+class NAND extends Component {
+    constructor(name,pos) {
+        super(name,pos,2,2,{ type: "char", text: "&" });
+        this.addInputPort({ side: 3, pos: 1 });
+        this.addInputPort({ side: 3, pos: 0 });
+        this.addOutputPort({ side: 1, pos: 0 }, '', { inverse: true });
+        this.function = function() {
+            this.output[0].value = !(this.input[0].value & this.input[1].value) ? 1 : 0;
+        }
+    }
+}
+
 class OR extends Component {
     constructor(name,pos) {
         super(name,pos,2,2,{ type: "char", text: "|" });
@@ -2011,6 +2023,18 @@ class OR extends Component {
     }
 }
 
+class NOR extends Component {
+    constructor(name,pos) {
+        super(name,pos,2,2,{ type: "char", text: "|" });
+        this.addInputPort({ side: 3, pos: 1 });
+        this.addInputPort({ side: 3, pos: 0 });
+        this.addOutputPort({ side: 1, pos: 0 }, '', { inverse: true });
+        this.function = function() {
+            this.output[0].value = !(this.input[0].value | this.input[1].value) ? 1 : 0;
+        }
+    }
+}
+
 class XOR extends Component {
     constructor(name,pos) {
         super(name,pos,2,2,{ type: "char", text: "^" });
@@ -2019,6 +2043,18 @@ class XOR extends Component {
         this.addOutputPort({ side: 1, pos: 0 });
         this.function = function() {
             this.output[0].value = this.input[0].value ^ this.input[1].value;
+        }
+    }
+}
+
+class XNOR extends Component {
+    constructor(name,pos) {
+        super(name,pos,2,2,{ type: "char", text: "^" });
+        this.addInputPort({ side: 3, pos: 1 });
+        this.addInputPort({ side: 3, pos: 0 });
+        this.addOutputPort({ side: 1, pos: 0 }, '', { inverse: true });
+        this.function = function() {
+            this.output[0].value = !(this.input[0].value ^ this.input[1].value) ? 1 : 0;
         }
     }
 }
